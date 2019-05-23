@@ -170,7 +170,7 @@ void ipc_packet::copy(const unsigned char* data, int length, bool header/* = fal
 	}	
 }
 
-ipc_socket_io::ipc_socket_io(const SOCKET& s, const ipc_socket_callback* callback)
+ipc_socket_io::ipc_socket_io(const SOCKET& s, ipc_socket_callback* callback)
 	: m_io_socket(s)
 	, m_callback(callback)
 	, m_handle_send(nullptr)

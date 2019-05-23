@@ -14,10 +14,10 @@ public:
 	ipc_client_socket_callback() {}
 	virtual ~ipc_client_socket_callback() {}
 
-	virtual void on_connect(const int errorcode, const int sockectnum) const { std::cout << "client connect, error code: " << errorcode << std::endl; };
-	virtual void on_disconnect(const int errorcode, const std::string summary, const int sockectnum) const { std::cout << "client disconnect, error code: " << errorcode << " socket: " << sockectnum << " summary: " << summary << std::endl; };
-	virtual void on_send(const unsigned char* data, const int len, const int sockectnum) const { /*std::cout << "client send data: " << std::string((const char*)data, len) << std::endl;*/ };
-	virtual void on_recv(const unsigned char* data, const int len, const int sockectnum) const 
+	virtual void on_connect(const int errorcode, const int sockectnum) { std::cout << "client connect, error code: " << errorcode << std::endl; };
+	virtual void on_disconnect(const int errorcode, const std::string summary, const int sockectnum) { std::cout << "client disconnect, error code: " << errorcode << " socket: " << sockectnum << " summary: " << summary << std::endl; };
+	virtual void on_send(const unsigned char* data, const int len, const int sockectnum) { /*std::cout << "client send data: " << std::string((const char*)data, len) << std::endl;*/ };
+	virtual void on_recv(const unsigned char* data, const int len, const int sockectnum) 
 	{ 
 		std::cout << "\r\nclient recv data: " << std::string((const char*)data, len) << std::endl;
 		std::cout << "sending: ";

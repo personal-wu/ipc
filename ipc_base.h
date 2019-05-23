@@ -19,10 +19,10 @@ public:
 	virtual ~ipc_socket_callback() {};
 
 public:
-	virtual void on_connect(const int errorcode, const int sockectnum) const = 0;
-	virtual void on_disconnect(const int errorcode, const std::string summary, const int sockectnum) const = 0;
-	virtual void on_send(const unsigned char* data, const int len, const int sockectnum) const = 0;
-	virtual void on_recv(const unsigned char* data, const int len, const int sockectnum) const = 0;
+	virtual void on_connect(const int errorcode, const int sockectnum) = 0;
+	virtual void on_disconnect(const int errorcode, const std::string summary, const int sockectnum) = 0;
+	virtual void on_send(const unsigned char* data, const int len, const int sockectnum) = 0;
+	virtual void on_recv(const unsigned char* data, const int len, const int sockectnum) = 0;
 };
 
 class ipc_socket
@@ -79,7 +79,7 @@ public:
 class ipc_socket_io
 {
 public:
-	ipc_socket_io(const SOCKET& s, const ipc_socket_callback* callback);
+	ipc_socket_io(const SOCKET& s, ipc_socket_callback* callback);
 	virtual ~ipc_socket_io();
 
 public:
@@ -102,7 +102,7 @@ protected:
 	SOCKET m_io_socket;
 	HANDLE m_handle_send;
 	HANDLE m_handle_recv;
-	const ipc_socket_callback* m_callback;
+	ipc_socket_callback* m_callback;
 	std::list<ipc_packet> m_list_send_packets;
 	CRITICAL_SECTION m_cs;
 };
